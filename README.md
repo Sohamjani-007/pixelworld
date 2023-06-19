@@ -41,6 +41,11 @@ Social Website : Created a website to bookmark and share images.
 16. Count image views with Redis
 17. Build an image ranking with Redis
 
+
+# Dev Note:
+
+![img.png](docs/img/devloper.gif)
+
 ***
 
 
