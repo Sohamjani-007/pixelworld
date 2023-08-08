@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7&xq14cn0ok)o8-dlitux-vcq%t2(@k4r00f_79+u=35i@dej3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'social_django',
+    'django_extensions',
+    'images.apps.ImagesConfig',
 ]
 # Middleware is classes with methods that are globally executed during the request or response phase.
 MIDDLEWARE = [
@@ -48,6 +51,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'utils.middleware.ParallelRequestBlocker',
+    # 'pixelworld.middleware.SqlPrintingMiddleware',
 ]
 
 ROOT_URLCONF = 'pixelworld.urls'
@@ -130,6 +135,9 @@ LOGOUT_URL = 'logout'
 AUTHENTICATION_BACKENDS = [
  'django.contrib.auth.backends.ModelBackend',
  'account.authentication.EmailAuthBackend',
+ 'social_core.backends.facebook.FacebookOAuth2',
+ 'social_core.backends.twitter.TwitterOAuth',
+ 'social_core.backends.google.GoogleOAuth2',
 ]
 
 #The EMAIL_BACKEND setting indicates the class that will be used to send emails.
@@ -151,3 +159,36 @@ PASSWORD_HASHERS = [
 MEDIA_URL = 'media/'
 # MEDIA_ROOT is the local path where they reside.
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# FACEBOOK AUTH KEYS
+SOCIAL_AUTH_FACEBOOK_KEY = '781381293466503' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'b69d4551e69f0010649875c06f9644a1' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+
+# TWITTER AUTH KEYS
+SOCIAL_AUTH_TWITTER_KEY = 'Ko0ZtPpcgnpV42ekdDsDgJEGY' # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET = 'AXz1TyOnCw7OPTjlEfFSw4mrEexWMq8Vu9VElnDYO9XyZoe42c' # Twitter API Secret
+# Here is your OAuth 2.0 Client ID and Client Secret
+# For now we aren't using this: because you will be using the API Key and API Key Secret instead.
+# -----------------------------------------------------------------------|
+# Client ID = "dVBqeklXQURWdUhhRW1YRFpRX2c6MTpjaQ"                       |
+# Client Secret = QyTXzoER7n2uxg1oiR-R88NzIhgD1VLhqPRIz00OR7xKHOTYSK     |
+# -----------------------------------------------------------------------|
+
+# GOOGLE CLOUD PLATFORM SECRET O AUTH CLIENT CREDENTIALS:
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '575678857330-vun5v1qporilmhpg3as775ff6g6u8qo0.apps.googleusercontent.com' # Google Client ID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Client Secret
+
+# Default Authentication pipeline used by Python Social Auth.
+SOCIAL_AUTH_PIPELINE = [
+ 'social_core.pipeline.social_auth.social_details',
+ 'social_core.pipeline.social_auth.social_uid',
+ 'social_core.pipeline.social_auth.auth_allowed',
+ 'social_core.pipeline.social_auth.social_user',
+ 'social_core.pipeline.user.get_username',
+ 'social_core.pipeline.user.create_user',
+ 'account.authentication.create_profile',
+ 'social_core.pipeline.social_auth.associate_user',
+ 'social_core.pipeline.social_auth.load_extra_data',
+ 'social_core.pipeline.user.user_details',
+]

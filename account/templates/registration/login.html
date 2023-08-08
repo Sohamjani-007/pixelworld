@@ -3,6 +3,25 @@
 {% block title %}Log-in{% endblock %}
 
 {% block content %}
+<div class="social">
+ <ul>
+ <li class="facebook">
+ <a href="{% url "social:begin" "facebook" %}">
+ Sign in with Facebook
+ </a>
+ </li>
+     <li class="twitter">
+ <a href="{% url "social:begin" "twitter" %}">
+ Sign in with Twitter
+ </a>
+ </li>
+     <li class="google">
+ <a href="{% url "social:begin" "google-oauth2" %}">
+ Sign in with Google
+ </a>
+ </li>
+ </ul>
+ </div>
   <h1>Log-in</h1>
   {% if form.errors %}
     <p>
