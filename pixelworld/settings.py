@@ -24,6 +24,10 @@ SECRET_KEY = 'django-insecure-7&xq14cn0ok)o8-dlitux-vcq%t2(@k4r00f_79+u=35i@dej3
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+if DEBUG:
+    import mimetypes
+    mimetypes.add_type('application/javascript', '.js', True)
+    mimetypes.add_type('text/css', '.css', True)
 
 ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
@@ -161,23 +165,23 @@ MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 # FACEBOOK AUTH KEYS
-SOCIAL_AUTH_FACEBOOK_KEY = '781381293466503' # Facebook App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = 'b69d4551e69f0010649875c06f9644a1' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_KEY = '' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '' # Facebook App Secret
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 # TWITTER AUTH KEYS
-SOCIAL_AUTH_TWITTER_KEY = 'Ko0ZtPpcgnpV42ekdDsDgJEGY' # Twitter API Key
-SOCIAL_AUTH_TWITTER_SECRET = 'AXz1TyOnCw7OPTjlEfFSw4mrEexWMq8Vu9VElnDYO9XyZoe42c' # Twitter API Secret
+SOCIAL_AUTH_TWITTER_KEY = '' # Twitter API Key
+SOCIAL_AUTH_TWITTER_SECRET = '' # Twitter API Secret
 # Here is your OAuth 2.0 Client ID and Client Secret
 # For now we aren't using this: because you will be using the API Key and API Key Secret instead.
 # -----------------------------------------------------------------------|
-# Client ID = "dVBqeklXQURWdUhhRW1YRFpRX2c6MTpjaQ"                       |
-# Client Secret = QyTXzoER7n2uxg1oiR-R88NzIhgD1VLhqPRIz00OR7xKHOTYSK     |
+# Client ID = ""                       |
+# Client Secret = ""     |
 # -----------------------------------------------------------------------|
 
 # GOOGLE CLOUD PLATFORM SECRET O AUTH CLIENT CREDENTIALS:
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '575678857330-vun5v1qporilmhpg3as775ff6g6u8qo0.apps.googleusercontent.com' # Google Client ID
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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' # Google Client Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '' # Google Client ID
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '' # Google Client Secret
 
 # Default Authentication pipeline used by Python Social Auth.
 SOCIAL_AUTH_PIPELINE = [
@@ -192,3 +196,5 @@ SOCIAL_AUTH_PIPELINE = [
  'social_core.pipeline.social_auth.load_extra_data',
  'social_core.pipeline.user.user_details',
 ]
+
+
